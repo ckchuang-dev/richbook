@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "octref.vetur",
+    "streetsidesoftware.code-spell-checker",
+    "kisstkondoros.vscode-codemetrics"
+  ]
+}
