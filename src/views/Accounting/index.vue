@@ -1,9 +1,16 @@
 <template>
-  <h1>記帳頁</h1>
+  <el-calendar v-model="value">
+  </el-calendar>
 </template>
 
 <script>
-  export default {}
+  export default {
+    data() {
+      return {
+        value: new Date()
+      }
+    }
+  }
 </script>
 
 <style>
