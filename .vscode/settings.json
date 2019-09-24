@@ -31,8 +31,6 @@
       "wrap_attributes": "force-expand-multiline"
     }
   },
-  "eslint.validate": ["javascript", "html", "vue"],
-  "blueprint.templatesPath": [".vscode/blueprint-templates"],
   "cSpell.words": ["mixins", "LIFECYCLE", "vuex"],
   "cSpell.ignorePaths": [
     "**/package-lock.json",
