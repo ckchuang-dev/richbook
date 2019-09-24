@@ -1,0 +1,19 @@
+<template>
+  <el-card>
+    <h2>帳戶管理</h2>
+    <el-calendar>
+    </el-calendar>
+  </el-card>
+</template>
+
+<script>
+  export default {
+    name: 'Account',
+    data() {
+      return {}
+    }
+  }
+</script>
+
+<style>
+</style>

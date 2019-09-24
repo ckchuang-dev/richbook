@@ -3,72 +3,51 @@
     class="app-sidebar"
     width="200px"
   >
-    <el-menu>
-      <el-menu-item index="1">
-        <template slot="title"><i class="el-icon-notebook-1"></i>月記帳本</template>
-      </el-menu-item>
-      <el-menu-item index="2">
-        <template slot="title"><i class="el-icon-money"></i>帳戶管理</template>
-      </el-menu-item>
-      <el-menu-item index="3">
-        <template slot="title"><i class="el-icon-pie-chart"></i>圖表分析</template>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <template slot="title"><i class="el-icon-pie-chart"></i>大筆消費</template>
-      </el-menu-item>
-      <el-menu-item index="5">
-        <template slot="title"><i class="el-icon-pie-chart"></i>預算編列</template>
-      </el-menu-item>
-      <el-menu-item index="6">
-        <template slot="title"><i class="el-icon-pie-chart"></i>財務分配</template>
-      </el-menu-item>
-      <el-menu-item index="7">
-        <template slot="title"><i class="el-icon-pie-chart"></i>待購清單</template>
-      </el-menu-item>
-      <el-menu-item index="8">
-        <template slot="title"><i class="el-icon-pie-chart"></i>大筆消費</template>
-      </el-menu-item>
-      <el-menu-item index="9">
-        <template slot="title"><i class="el-icon-pie-chart"></i>大筆消費</template>
-      </el-menu-item>
-      <el-menu-item index="10">
-        <template slot="title"><i class="el-icon-pie-chart"></i>大筆消費</template>
-      </el-menu-item>
-      <el-menu-item index="11">
-        <template slot="title"><i class="el-icon-pie-chart"></i>大筆消費</template>
-      </el-menu-item>
-      <el-menu-item index="12">
-        <template slot="title"><i class="el-icon-pie-chart"></i>大筆消費</template>
-      </el-menu-item>
-      <el-menu-item index="13">
-        <template slot="title"><i class="el-icon-pie-chart"></i>大筆消費</template>
-      </el-menu-item>
-      <el-menu-item index="14">
-        <template slot="title"><i class="el-icon-pie-chart"></i>大筆消費</template>
-      </el-menu-item>
-      <el-menu-item index="15">
-        <template slot="title"><i class="el-icon-pie-chart"></i>大筆消費</template>
-      </el-menu-item>
-      <el-menu-item index="16">
-        <template slot="title"><i class="el-icon-pie-chart"></i>大筆消費</template>
-      </el-menu-item>
-      <el-menu-item index="17">
-        <template slot="title"><i class="el-icon-pie-chart"></i>大筆消費</template>
-      </el-menu-item>
-      <el-menu-item index="18">
-        <template slot="title"><i class="el-icon-pie-chart"></i>大筆消費</template>
-      </el-menu-item>
+    <el-menu
+      :default-active="activeIndex"
+      @select="handleItemSelect"
+    >
+      <template v-for="menuItem in menuList">
+        <el-menu-item
+          :index="menuItem.name"
+          :key="menuItem.name"
+        >
+          <i :class="['app-sidebar__icon', `${menuItem.meta.icon}`]" />
+          <span>{{menuItem.meta.title}}</span>
+        </el-menu-item>
+      </template>
     </el-menu>
   </el-aside>
 </template>
 
 <script>
   export default {
-    name: 'Sidebar'
+    name: 'Sidebar',
+    computed: {
+      menuList() {
+        return this.$router.options.routes[0].children
+      }
+    },
+    data() {
+      return {
+        activeIndex: this.$route.name
+      }
+    },
+    methods: {
+      handleItemSelect(index) {
+        if (this.activeIndex !== index) {
+          this.activeIndex = index
+          this.$router.push({ name: index })
+        }
+      }
+    }
   }
 </script>
 
-<style>
+<style lang="scss">
   .app-sidebar {
+    &__icon {
+      margin-right: 0.75rem;
+    }
   }
 </style>
