@@ -1,12 +1,8 @@
 <template>
-  <div>
-    <el-button
-      type="primary"
-      @click="dialogFormVisible = true"
-    >新增紀錄</el-button>
+  <div class="pg-billing">
+    <BillingDialog :dialogFormVisible.sync="dialogFormVisible" />
     <BillingCalendar />
     <BillingList />
-    <BillingDialog :dialogFormVisible="dialogFormVisible" />
   </div>
 </template>
 
@@ -25,5 +21,5 @@
   }
 </script>
 
-<style>
+<style lang="scss" scoped>
 </style>

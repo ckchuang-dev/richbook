@@ -1,7 +1,11 @@
 <template>
-  <div>
+  <div class="ct_billing_dialog">
+    <el-button
+      class="ct_billing_dialog__btn-add"
+      type="primary"
+      @click="dialogFormVisible = true"
+    >新增紀錄</el-button>
     <el-dialog
-      id="ct_billing_dialog"
       title="新增紀錄"
       :visible.sync="dialogFormVisible"
     >
@@ -79,12 +83,6 @@
 <script>
   export default {
     name: 'BillingDialog',
-    props: {
-      dialogFormVisible: {
-        type: Boolean,
-        default: false
-      }
-    },
     data() {
       return {
         form: {
@@ -92,13 +90,18 @@
           type: '',
           title: '',
           account: ''
-        }
+        },
+        dialogFormVisible: false
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  #ct_billing_dialog {
+  .ct_billing_dialog {
+    &__btn-add {
+      display: block;
+      margin-left: auto;
+    }
   }
 </style>
