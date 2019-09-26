@@ -15,7 +15,7 @@
       >
         <el-form-item label="金額">
           <el-input
-            v-model.number="form.dollor"
+            v-model.number="form.dollar"
             placeholder="請輸入金額"
             autocomplete="off"
           ></el-input>
@@ -73,7 +73,7 @@
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button
           type="primary"
-          @click="dialogFormVisible = false"
+          @click="handleSubmit"
         >儲存</el-button>
       </div>
     </el-dialog>
@@ -86,12 +86,24 @@
     data() {
       return {
         form: {
-          dollor: '',
+          dollar: '',
           type: '',
           title: '',
           account: ''
         },
         dialogFormVisible: false
+      }
+    },
+    methods: {
+      handleSubmit() {
+        this.$store.dispatch('billing/addExpense', this.form)
+        this.dialogFormVisible = false
+        this.form = {
+          dollar: '',
+          type: '',
+          title: '',
+          account: ''
+        }
       }
     }
   }
