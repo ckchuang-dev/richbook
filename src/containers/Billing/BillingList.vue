@@ -1,7 +1,7 @@
 <template>
   <el-card id="ct_billing_list">
     <el-table
-      :data="billingData"
+      :data="expenseData"
       stripe
     >
       <el-table-column
@@ -16,7 +16,7 @@
         label="項目"
       />
       <el-table-column
-        prop="dollor"
+        prop="dollar"
         label="金額"
         width="250"
       />
@@ -41,61 +41,13 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     name: 'BillingList',
-    data() {
-      return {
-        billingData: [
-          {
-            type: 'breakfast',
-            title: '鮪魚蛋土司',
-            dollor: 35,
-            icon: 'el-icon-burger'
-          },
-          {
-            type: 'lunch',
-            title: '水煎包十顆',
-            dollor: 150,
-            icon: 'el-icon-burger'
-          },
-          {
-            type: 'dinner',
-            title: '美國頂級菲力牛排佐鮮蝦 8oz',
-            dollor: 2860,
-            icon: 'el-icon-burger'
-          },
-          {
-            type: 'dinner',
-            title: '原木燒烤法式羔羊排 8oz',
-            dollor: 1860
-          },
-          {
-            type: 'dinner',
-            title: '香煎西班牙頂級伊比利豬排 8oz',
-            dollor: 1260
-          },
-          {
-            type: 'dinner',
-            title: '美國蛇河農場極黑和牛老饕牛排 6oz',
-            dollor: 2110
-          },
-          {
-            type: 'dinner',
-            title: '美國 Prime 衫河農場濕式熟成 45 天叻眼牛排 12oz',
-            dollor: 2340
-          },
-          {
-            type: 'dinner',
-            title: '乾式熟成極黑法式里肌 8oz',
-            dollor: 2440
-          },
-          {
-            type: 'dinner',
-            title: '澳洲 10 級純種冠軍和牛叻眼牛排 12oz',
-            dollor: 3860
-          }
-        ]
-      }
+    computed: {
+      ...mapState({
+        expenseData: state => state.billing.expenseData
+      })
     }
   }
 </script>
