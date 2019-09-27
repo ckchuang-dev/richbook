@@ -3,11 +3,11 @@
     <el-button
       class="ct_billing_dialog__btn-add"
       type="primary"
-      @click="dialogFormVisible = true"
+      @click="setDialogStatus(true)"
     >新增紀錄</el-button>
     <el-dialog
       title="新增紀錄"
-      :visible.sync="dialogFormVisible"
+      :visible="openDialog"
     >
       <el-form
         :model="form"
@@ -70,7 +70,7 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="setDialogStatus(false)">取 消</el-button>
         <el-button
           type="primary"
           @click="handleSubmit"
@@ -81,8 +81,15 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     name: 'BillingDialog',
+    computed: {
+      ...mapState({
+        openDialog: state => state.billing.openDialog,
+        dialogData: state => state.billing.dialogData
+      })
+    },
     data() {
       return {
         form: {
@@ -90,20 +97,23 @@
           type: '',
           title: '',
           account: ''
-        },
-        dialogFormVisible: false
+        }
       }
     },
     methods: {
       handleSubmit() {
+        // TODO: validation
         this.$store.dispatch('billing/addExpense', this.form)
-        this.dialogFormVisible = false
+        this.setDialogStatus(false)
         this.form = {
           dollar: '',
           type: '',
           title: '',
           account: ''
         }
+      },
+      setDialogStatus(status) {
+        this.$store.commit('billing/SET_OPEN_DIALOG', status)
       }
     }
   }

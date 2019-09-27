@@ -1,8 +1,11 @@
 <template>
   <div class="pg-billing">
-    <BillingDialog :dialogFormVisible.sync="dialogFormVisible" />
+    <BillingDialog />
     <BillingCalendar />
-    <BillingList />
+    <BillingList
+      @edit-row="handleEditRow"
+      @delete-row="handleDeleteRow"
+    />
   </div>
 </template>
 
@@ -13,10 +16,13 @@
   export default {
     name: 'Billing',
     components: { BillingCalendar, BillingList, BillingDialog },
-    data() {
-      return {
-        dialogFormVisible: false
-      }
+    methods: {
+      handleEditRow({ index, row }) {
+        this.$store.commit('billing/SET_DIALOG_TYPE', 'EDIT')
+        this.$store.commit('billing/SET_OPEN_DIALOG', status)
+        this.$store.commit('billing/SET_DIALOG_DATA', { index, ...row })
+      },
+      handleDeleteRow(index, row) {}
     }
   }
 </script>
