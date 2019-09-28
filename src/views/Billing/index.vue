@@ -1,8 +1,17 @@
 <template>
   <div class="pg-billing">
-    <BillingDialog :dialogFormVisible.sync="dialogFormVisible" />
+    <el-button
+      class="pg-billing__btn-add"
+      type="primary"
+      @click="handleAdd"
+    >新增紀錄</el-button>
+    <BillingDialog
+      :showDialog="showDialog"
+      :dialogData="dialogData"
+      @close="closeDialog"
+    />
     <BillingCalendar />
-    <BillingList />
+    <BillingList @edit="handleEdit" />
   </div>
 </template>
 
@@ -15,11 +24,38 @@
     components: { BillingCalendar, BillingList, BillingDialog },
     data() {
       return {
-        dialogFormVisible: false
+        showDialog: false,
+        dialogData: {
+          action: '',
+          data: {}
+        }
+      }
+    },
+    methods: {
+      handleAdd() {
+        this.dialogData.action = 'ADD'
+        this.dialogData.data = {}
+        this.showDialog = true
+      },
+      handleEdit(data) {
+        this.dialogData.action = 'EDIT'
+        this.dialogData.data = { ...data }
+        this.showDialog = true
+      },
+      closeDialog() {
+        this.dialogData.action = ''
+        this.dialogData.data = {}
+        this.showDialog = false
       }
     }
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+  .pg-billing {
+    &__btn-add {
+      display: block;
+      margin-left: auto;
+    }
+  }
 </style>

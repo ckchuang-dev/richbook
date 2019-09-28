@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "files.autoSave": "off",
+  "files.autoSave": "onWindowChange",
   "editor.tabSize": 2,
   "editor.rulers": [80, 120],
   "editor.wordWrapColumn": 120,

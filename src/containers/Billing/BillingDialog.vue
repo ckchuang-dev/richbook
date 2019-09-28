@@ -1,13 +1,9 @@
 <template>
   <div class="ct_billing_dialog">
-    <el-button
-      class="ct_billing_dialog__btn-add"
-      type="primary"
-      @click="dialogFormVisible = true"
-    >新增紀錄</el-button>
     <el-dialog
       title="新增紀錄"
       :visible.sync="dialogFormVisible"
+      @close="handleClose"
     >
       <el-form
         :model="form"
@@ -83,6 +79,16 @@
 <script>
   export default {
     name: 'BillingDialog',
+    props: {
+      showDialog: {
+        type: Boolean,
+        required: true
+      },
+      dialogData: {
+        type: Object,
+        required: true
+      }
+    },
     data() {
       return {
         form: {
@@ -97,6 +103,10 @@
     methods: {
       handleSubmit() {
         this.$store.dispatch('billing/addExpense', this.form)
+        this.handleClose()
+      },
+      handleClose() {
+        this.$emit('close')
         this.dialogFormVisible = false
         this.form = {
           dollar: '',
@@ -105,15 +115,28 @@
           account: ''
         }
       }
+    },
+    watch: {
+      showDialog: function(newValue) {
+        if (newValue) {
+          this.dialogFormVisible = true
+          if (this.dialogData.action === 'ADD') {
+            this.form = {
+              dollar: '',
+              type: '',
+              title: '',
+              account: ''
+            }
+          } else {
+            this.form = { ...this.dialogData.data }
+          }
+        }
+      }
     }
   }
 </script>
 
 <style lang="scss" scoped>
   .ct_billing_dialog {
-    &__btn-add {
-      display: block;
-      margin-left: auto;
-    }
   }
 </style>
