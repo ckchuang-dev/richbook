@@ -51,7 +51,7 @@
     },
     methods: {
       handleEdit(index, data) {
-        this.$emit('edit', data)
+        this.$emit('edit', { index, data })
       }
     }
   }

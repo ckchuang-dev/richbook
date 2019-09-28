@@ -7,14 +7,15 @@ export const state = () => ({
 export const mutations = {
   ADD_EXPENSE_DATA(state, expense) {
     state.expenseData.push(expense)
+  },
+  UPDATE_EXPENSE_DATA(state, { index, data }) {
+    if (state.expenseData[index]) {
+      state.expenseData[index] = { ...data }
+    }
   }
 }
 
-export const actions = {
-  addExpense({ commit }, expense) {
-    commit('ADD_EXPENSE_DATA', expense)
-  }
-}
+export const actions = {}
 
 export default {
   namespaced: true,

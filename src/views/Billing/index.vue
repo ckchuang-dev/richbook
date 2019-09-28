@@ -37,9 +37,10 @@
         this.dialogData.data = {}
         this.showDialog = true
       },
-      handleEdit(data) {
+      handleEdit({ index, data }) {
         this.dialogData.action = 'EDIT'
-        this.dialogData.data = { ...data }
+        this.dialogData.data = data
+        this.dialogData.index = index
         this.showDialog = true
       },
       closeDialog() {

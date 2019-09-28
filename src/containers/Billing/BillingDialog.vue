@@ -6,17 +6,21 @@
       @close="handleClose"
     >
       <el-form
+        ref="billingDialogForm"
         :model="form"
+        :rules="rules"
         label-width="80px"
       >
-        <el-form-item label="金額">
-          <el-input
-            v-model.number="form.dollar"
-            placeholder="請輸入金額"
-            autocomplete="off"
-          ></el-input>
+        <el-form-item
+          prop="dollar"
+          label="金額"
+        >
+          <el-input v-model.number="form.dollar"></el-input>
         </el-form-item>
-        <el-form-item label="類別">
+        <el-form-item
+          prop="type"
+          label="類別"
+        >
           <el-select
             v-model="form.type"
             placeholder="请選擇類別"
@@ -35,7 +39,10 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="帳戶">
+        <el-form-item
+          prop="account"
+          label="帳戶"
+        >
           <el-select
             v-model="form.account"
             placeholder="请選擇帳戶"
@@ -92,28 +99,38 @@
     data() {
       return {
         form: {
-          dollar: '',
+          dollar: 0,
           type: '',
           title: '',
           account: ''
+        },
+        rules: {
+          dollar: [
+            { required: true, message: '請輸入金額', trigger: 'blur' },
+            { pattern: /^[\d]*$/, message: '金額必須是數字' }
+          ],
+          type: [{ required: true, message: '請選擇類別', trigger: 'blur' }],
+          account: [{ required: true, message: '請選擇帳戶', trigger: 'blur' }]
         },
         dialogFormVisible: false
       }
     },
     methods: {
-      handleSubmit() {
-        this.$store.dispatch('billing/addExpense', this.form)
-        this.handleClose()
+      async handleSubmit() {
+        this.$refs.billingDialogForm
+          .validate()
+          .then(() => {
+            if (this.dialogData.action === 'ADD') this.$store.commit('billing/ADD_EXPENSE_DATA', this.form)
+            else this.$store.commit('billing/UPDATE_EXPENSE_DATA', { index: this.dialogData.index, data: this.form })
+            this.handleClose()
+          })
+          .catch(status => {
+            console.log(status)
+          })
       },
       handleClose() {
         this.$emit('close')
         this.dialogFormVisible = false
-        this.form = {
-          dollar: '',
-          type: '',
-          title: '',
-          account: ''
-        }
       }
     },
     watch: {
@@ -122,7 +139,7 @@
           this.dialogFormVisible = true
           if (this.dialogData.action === 'ADD') {
             this.form = {
-              dollar: '',
+              dollar: 0,
               type: '',
               title: '',
               account: ''
