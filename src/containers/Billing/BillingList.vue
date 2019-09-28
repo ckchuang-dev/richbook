@@ -48,11 +48,6 @@
       ...mapState({
         expenseData: state => state.billing.expenseData
       })
-    },
-    methods: {
-      handleEdit(index, row) {
-        this.$emit('edit-row', { index, row })
-      }
     }
   }
 </script>

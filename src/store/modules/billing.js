@@ -1,25 +1,12 @@
 import expenseData from '@/static/billing/expenseData.json'
 
 export const state = () => ({
-  expenseData: expenseData,
-  openDialog: false,
-  dialogData: {},
-  dialogType: 'ADD'
+  expenseData: expenseData
 })
 
 export const mutations = {
   ADD_EXPENSE_DATA(state, expense) {
     state.expenseData.push(expense)
-  },
-  SET_DIALOG_TYPE(state, type) {
-    state.dialogType = type
-  },
-  SET_OPEN_DIALOG(state, status) {
-    if (!status) state.dialogData = {}
-    state.openDialog = status
-  },
-  SET_DIALOG_DATA(state, dialogData) {
-    state.dialogData = { ...dialogData }
   }
 }
 
