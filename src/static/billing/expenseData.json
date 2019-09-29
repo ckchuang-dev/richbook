@@ -1,0 +1,56 @@
+[
+  {
+    "type": "breakfast",
+    "title": "鮪魚蛋土司",
+    "dollar": 35,
+    "account": "cash"
+  },
+  {
+    "type": "lunch",
+    "title": "水煎包十顆",
+    "dollar": 150,
+    "account": "cash"
+  },
+  {
+    "type": "dinner",
+    "title": "美國頂級菲力牛排佐鮮蝦 8oz",
+    "dollar": 2860,
+    "account": "cash"
+  },
+  {
+    "type": "dinner",
+    "title": "原木燒烤法式羔羊排 8oz",
+    "dollar": 1860,
+    "account": "cash"
+  },
+  {
+    "type": "dinner",
+    "title": "香煎西班牙頂級伊比利豬排 8oz",
+    "dollar": 1260,
+    "account": "cash"
+  },
+  {
+    "type": "dinner",
+    "title": "美國蛇河農場極黑和牛老饕牛排 6oz",
+    "dollar": 2110,
+    "account": "cash"
+  },
+  {
+    "type": "dinner",
+    "title": "美國 Prime 衫河農場濕式熟成 45 天叻眼牛排 12oz",
+    "dollar": 2340,
+    "account": "cash"
+  },
+  {
+    "type": "dinner",
+    "title": "乾式熟成極黑法式里肌 8oz",
+    "dollar": 2440,
+    "account": "cash"
+  },
+  {
+    "type": "dinner",
+    "title": "澳洲 10 級純種冠軍和牛叻眼牛排 12oz",
+    "dollar": 3860,
+    "account": "cash"
+  }
+]
