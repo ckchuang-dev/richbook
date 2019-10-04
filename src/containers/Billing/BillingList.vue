@@ -1,6 +1,7 @@
 <template>
   <el-card id="ct_billing_list">
     <el-table
+      v-loading="isLoading"
       :data="expenseData"
       stripe
     >
@@ -49,10 +50,22 @@
         expenseData: state => state.billing.expenseData
       })
     },
+    data() {
+      return {
+        expense: '',
+        isLoading: false
+      }
+    },
     methods: {
       handleEdit(index, data) {
         this.$emit('edit', { index, data })
       }
+    },
+    mounted() {
+      this.isLoading = true
+      this.$store.dispatch('billing/getExpenseData').then(() => {
+        this.isLoading = false
+      })
     }
   }
 </script>
