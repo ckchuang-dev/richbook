@@ -10,7 +10,7 @@
       :dialogData="dialogData"
       @close="closeDialog"
     />
-    <BillingCalendar />
+    <!-- <BillingCalendar /> -->
     <BillingList @edit="handleEdit" />
   </div>
 </template>
