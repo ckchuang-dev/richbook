@@ -6,9 +6,6 @@ export const state = () => ({
 })
 
 export const mutations = {
-  ADD_EXPENSE_DATA(state, expense) {
-    state.expenseData.push(expense)
-  },
   SET_EXPENSE_DATA(state, expenseData) {
     state.expenseData = expenseData
   }
@@ -32,12 +29,12 @@ export const actions = {
         .catch(error => reject(error))
     })
   },
-  addExpense({ commit }, expenseObj) {
+  addExpense({ dispatch }, expenseObj) {
     return new Promise((resolve, reject) => {
       db.collection('expense')
         .add({ ...expenseObj })
         .then(() => {
-          commit('ADD_EXPENSE_DATA', expenseObj)
+          dispatch('getExpenseData')
           resolve()
         })
         .catch(error => reject(error))

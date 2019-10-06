@@ -8,22 +8,23 @@
       <el-table-column
         prop="type"
         label="類別"
-        width="150"
+        width="50"
       >
         <i class="el-icon-food"></i>
       </el-table-column>
       <el-table-column
         prop="title"
         label="項目"
+        width="375"
       />
       <el-table-column
         prop="dollar"
         label="金額"
-        width="250"
+        width="100"
       />
       <el-table-column
         label="操作"
-        width="200"
+        width="150"
       >
         <template slot-scope="scope">
           <el-button
