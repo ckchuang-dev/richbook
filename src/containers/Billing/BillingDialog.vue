@@ -99,7 +99,7 @@
     data() {
       return {
         form: {
-          dollar: 0,
+          dollar: '',
           type: '',
           title: '',
           account: ''
@@ -120,8 +120,8 @@
         this.$refs.billingDialogForm
           .validate()
           .then(() => {
-            if (this.dialogData.action === 'ADD') this.$store.commit('billing/ADD_EXPENSE_DATA', this.form)
-            else this.$store.commit('billing/UPDATE_EXPENSE_DATA', { index: this.dialogData.index, data: this.form })
+            if (this.dialogData.action === 'ADD') this.$store.dispatch('billing/addExpense', this.form)
+            else this.$store.dispatch('billing/updateExpense', this.form)
             this.handleClose()
           })
           .catch(status => {
@@ -139,7 +139,7 @@
           this.dialogFormVisible = true
           if (this.dialogData.action === 'ADD') {
             this.form = {
-              dollar: 0,
+              dollar: '',
               type: '',
               title: '',
               account: ''

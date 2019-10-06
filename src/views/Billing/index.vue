@@ -10,7 +10,7 @@
       :dialogData="dialogData"
       @close="closeDialog"
     />
-    <BillingCalendar />
+    <!-- <BillingCalendar /> -->
     <BillingList @edit="handleEdit" />
   </div>
 </template>
@@ -37,10 +37,9 @@
         this.dialogData.data = {}
         this.showDialog = true
       },
-      handleEdit({ index, data }) {
+      handleEdit(data) {
         this.dialogData.action = 'EDIT'
         this.dialogData.data = data
-        this.dialogData.index = index
         this.showDialog = true
       },
       closeDialog() {
