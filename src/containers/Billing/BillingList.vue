@@ -58,7 +58,7 @@
     },
     methods: {
       handleEdit(index, data) {
-        this.$emit('edit', { index, data })
+        this.$emit('edit', { data })
       }
     },
     mounted() {
