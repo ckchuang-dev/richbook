@@ -29,7 +29,18 @@ export const actions = {
           commit('SET_EXPENSE_DATA', documents)
           resolve()
         })
-        .catch(({ response }) => reject(response.status))
+        .catch(error => reject(error))
+    })
+  },
+  addExpense({ commit }, expenseObj) {
+    return new Promise((resolve, reject) => {
+      db.collection('expense')
+        .add({ ...expenseObj })
+        .then(() => {
+          commit('ADD_EXPENSE_DATA', expenseObj)
+          resolve()
+        })
+        .catch(error => reject(error))
     })
   }
 }

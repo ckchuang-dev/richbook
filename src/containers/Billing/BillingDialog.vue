@@ -120,7 +120,7 @@
         this.$refs.billingDialogForm
           .validate()
           .then(() => {
-            if (this.dialogData.action === 'ADD') this.$store.commit('billing/ADD_EXPENSE_DATA', this.form)
+            if (this.dialogData.action === 'ADD') this.$store.dispatch('billing/addExpense', this.form)
             else this.$store.commit('billing/UPDATE_EXPENSE_DATA', { index: this.dialogData.index, data: this.form })
             this.handleClose()
           })
