@@ -37,7 +37,7 @@
         this.dialogData.data = {}
         this.showDialog = true
       },
-      handleEdit({ data }) {
+      handleEdit(data) {
         this.dialogData.action = 'EDIT'
         this.dialogData.data = data
         this.showDialog = true

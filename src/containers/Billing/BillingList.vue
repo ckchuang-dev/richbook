@@ -28,16 +28,33 @@
         <template slot-scope="scope">
           <el-button
             size="mini"
-            @click="handleEdit(scope.$index, scope.row)"
+            @click="handleEdit(scope.row)"
           >編輯</el-button>
           <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
+            @click="handleConfirm(scope.row.id)"
           >刪除</el-button>
         </template>
       </el-table-column>
     </el-table>
+    <el-dialog
+      title="提示"
+      :visible.sync="deleteDialogVisible"
+      width="30%"
+    >
+      <span>確認要刪除這一筆紀錄嗎？</span>
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
+        <el-button @click="deleteDialogVisible = false">取消</el-button>
+        <el-button
+          type="primary"
+          @click="handleDelete"
+        >確認</el-button>
+      </span>
+    </el-dialog>
   </el-card>
 </template>
 
@@ -53,12 +70,22 @@
     data() {
       return {
         expense: '',
-        isLoading: false
+        isLoading: false,
+        deleteDialogVisible: false,
+        deleteId: ''
       }
     },
     methods: {
-      handleEdit(index, data) {
-        this.$emit('edit', { data })
+      handleEdit(data) {
+        this.$emit('edit', data)
+      },
+      handleConfirm(id) {
+        this.deleteDialogVisible = true
+        this.deleteId = id
+      },
+      handleDelete() {
+        this.deleteDialogVisible = false
+        this.$store.dispatch('billing/deleteExpense', this.deleteId)
       }
     },
     mounted() {

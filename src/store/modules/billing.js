@@ -43,7 +43,7 @@ export const actions = {
         .catch(error => reject(error))
     })
   },
-  updateExpense({ commit, dispatch }, expenseObj) {
+  updateExpense({ dispatch }, expenseObj) {
     const id = expenseObj.id
     delete expenseObj.id
     return new Promise((resolve, reject) => {
@@ -52,6 +52,18 @@ export const actions = {
         .update({
           ...expenseObj
         })
+        .then(() => {
+          dispatch('getExpenseData')
+          resolve()
+        })
+        .catch(error => reject(error))
+    })
+  },
+  deleteExpense({ dispatch }, id) {
+    return new Promise((resolve, reject) => {
+      db.collection('expense')
+        .doc(id)
+        .delete()
         .then(() => {
           dispatch('getExpenseData')
           resolve()
