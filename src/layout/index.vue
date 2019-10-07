@@ -1,40 +1,37 @@
 <template>
-  <el-container class="app-layout">
-    <Sidebar />
-    <el-container>
-      <Header />
-      <el-main class="app-main">
+  <div class="app-layout">
+    <div class="app-layout__left">
+      <app-aside />
+    </div>
+    <div class="app-layout__right">
+      <app-header />
+      <app-main>
         <slot />
-      </el-main>
-    </el-container>
-  </el-container>
+      </app-main>
+      <app-footer />
+    </div>
+  </div>
 </template>
 
 <script>
-  import Header from './components/Header'
-  import Sidebar from './components/Sidebar'
+  import AppAside from './components/AppAside'
+  import AppHeader from './components/AppHeader'
+  import AppMain from './components/AppMain'
+  import AppFooter from './components/AppFooter'
   export default {
     name: 'Layout',
-    components: { Header, Sidebar }
+    components: { AppAside, AppHeader, AppMain, AppFooter }
   }
 </script>
 
-<style>
+<style lang="scss">
   .app-layout {
-    width: 100%;
-    margin: 0;
-  }
-  .app-main {
-    position: absolute;
-    top: 60px;
-  }
-  .el-header {
-    background-color: #b3c0d1;
-    color: #333;
-    line-height: 60px;
-  }
-  .el-aside {
-    color: #333;
-    height: 100%;
+    display: flex;
+    &__left {
+    }
+    &__right {
+      margin-left: 15rem;
+      width: 100%;
+    }
   }
 </style>
