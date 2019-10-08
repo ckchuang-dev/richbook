@@ -44,16 +44,6 @@
 
 <style lang="scss">
   .app-aside {
-    background-color: #304156;
-    width: 15rem;
-    height: 100%;
-    position: fixed;
-    font-size: 0;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1001;
-    overflow: hidden;
     &__icon {
       margin-right: 1rem;
     }

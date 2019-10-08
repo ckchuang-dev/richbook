@@ -1,10 +1,10 @@
 <template>
   <div class="app-layout">
-    <div class="app-layout__left">
+    <div :class="['app-layout__aside-container', {'app-layout__show-aside': isAsideVisible}]">
       <app-aside />
     </div>
-    <div class="app-layout__right">
-      <app-header />
+    <div :class="['app-layout__main-container', {'app-layout__show-aside': isAsideVisible}]">
+      <app-header @toggle="toggleAside" />
       <app-main>
         <transition name="fade-transform">
           <slot />
@@ -22,19 +22,50 @@
   import AppFooter from './components/AppFooter'
   export default {
     name: 'Layout',
-    components: { AppAside, AppHeader, AppMain, AppFooter }
+    components: { AppAside, AppHeader, AppMain, AppFooter },
+    data() {
+      return {
+        isAsideVisible: false
+      }
+    },
+    methods: {
+      toggleAside() {
+        this.isAsideVisible = !this.isAsideVisible
+      }
+    }
   }
 </script>
 
 <style lang="scss">
+  $layout-aside-show-width: 15rem;
+  $layout-aside-hide-width: 3.5rem;
+
   .app-layout {
     display: flex;
-    &__left {
+    &__aside-container {
+      transition: width 0.28s;
+      background-color: #304156;
+      width: $layout-aside-hide-width;
+      height: 100%;
+      position: fixed;
+      font-size: 0;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1001;
+      overflow: hidden;
+      &.app-layout__show-aside {
+        width: $layout-aside-show-width;
+      }
     }
-    &__right {
-      margin-left: 15rem;
+    &__main-container {
+      transition: margin-left 0.28s;
+      margin-left: $layout-aside-hide-width;
       width: 100%;
       min-height: 100%;
+      &.app-layout__show-aside {
+        margin-left: $layout-aside-show-width;
+      }
     }
   }
 </style>
