@@ -61,6 +61,10 @@
       padding-left: 1.4rem;
       color: rgb(191, 203, 217);
       background-color: rgb(48, 65, 86);
+      &:hover,
+      &:focus {
+        background-color: #263445;
+      }
     }
   }
 </style>

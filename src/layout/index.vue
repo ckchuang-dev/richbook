@@ -6,7 +6,9 @@
     <div class="app-layout__right">
       <app-header />
       <app-main>
-        <slot />
+        <transition name="fade-transform">
+          <slot />
+        </transition>
       </app-main>
       <app-footer />
     </div>
@@ -32,6 +34,7 @@
     &__right {
       margin-left: 15rem;
       width: 100%;
+      min-height: 100%;
     }
   }
 </style>

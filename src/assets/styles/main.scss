@@ -1,3 +1,7 @@
 @import 'variables';
-@import 'reset';
+@import 'transition';
 @import 'base';
+
+#app {
+  height: 100%;
+}
