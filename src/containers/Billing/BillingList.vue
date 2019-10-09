@@ -8,6 +8,7 @@
       <el-table-column
         prop="type"
         label="類別"
+        align="center"
         width="50"
       >
         <i class="el-icon-food"></i>
@@ -19,7 +20,8 @@
       <el-table-column
         prop="dollar"
         label="金額"
-        width="100"
+        align="right"
+        width="80"
       />
       <el-table-column
         label="操作"

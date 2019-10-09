@@ -1,16 +1,17 @@
 <template>
   <div class="pg-billing">
-    <el-button
-      class="pg-billing__btn-add"
-      type="primary"
-      @click="handleAdd"
-    >新增紀錄</el-button>
     <BillingDialog
       :showDialog="showDialog"
       :dialogData="dialogData"
       @close="closeDialog"
     />
-    <!-- <BillingCalendar /> -->
+    <BillingCalendar />
+    <el-button
+      class="pg-billing__btn-add"
+      type="primary"
+      size="mini"
+      @click="handleAdd"
+    >新增紀錄</el-button>
     <BillingList @edit="handleEdit" />
   </div>
 </template>
@@ -56,7 +57,7 @@
     &__btn-add {
       display: block;
       margin-left: auto;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.71rem;
     }
   }
 </style>
