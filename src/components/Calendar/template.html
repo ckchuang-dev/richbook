@@ -1,0 +1,89 @@
+<div class="cp_calendar">
+  <div class="container">
+
+    <!-- calendar header -->
+    <header>
+      <button class="prev" @click="changePeriod(0)">{{"<"}}</button>
+      <div class="month_btn" @click="changeTable">{{headerText}}</div>
+      <button class="next" @click="changePeriod(1)">{{">"}}</button>
+    </header>
+
+    <!-- calendar content -->
+    <div class="content">
+
+      <!-- date table -->
+      <table
+        v-show="selectedTableId === 1"
+        class="date_table"
+        cellspacing="0"
+        cellpadding="0"
+      >
+        <tbody>
+          <tr>
+            <th v-for="name in weekNames">
+              {{name}}
+            </th>
+          </tr>
+          <tr v-for="week in daysInMonth">
+            <td
+              v-for="date in week"
+              :class="{
+                inactive: !date.active,
+                selected: checkSelectedDate(date),
+                current: checkCurrentDate(date)}"
+              @click="selectDate(date)"
+            >
+              {{date.value}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- month table -->
+      <table
+        v-show="selectedTableId === 2"
+        class="month_table"
+        cellspacing="0"
+        cellpadding="0"
+      >
+        <tbody>
+          <tr v-for="(r, i) in 3">
+            <td
+              v-for="(monthName, j) in monthNames.slice(i * 4, (i+1) * 4)"
+              :class="{
+                selected: checkSelectedMonth(i * 4 + j),
+                current: checkCurrentMonth(i * 4 + j)}"
+              @click="selectMonth(monthName)"
+            >
+              {{monthName}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- year table -->
+      <table
+        v-show="selectedTableId === 3"
+        class="year_table"
+        cellspacing="0"
+        cellpadding="0"
+      >
+        <tbody>
+          <tr v-for="(r1, i) in 3">
+            <td
+              v-for="(r2, j) in 4"
+              @click="selectYear(i, j)"
+              :class="{
+                inactive: (i === 0 && j === 0) || (i === 2 && j === 3),
+                selected: checkSelectedYear(i, j),
+                current: checkCurrentYear(i, j)}"
+            >
+              {{parseInt(`${Math.floor(displayDate.year / 10)}0`) - 1 + i * 4 + j}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

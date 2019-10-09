@@ -1,0 +1,92 @@
+.cp_calendar {
+  width: 100%;
+  display: flex;
+  font-size: 1rem;
+  position: relative;
+  .container {
+    width: 300px;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 4px;
+    line-height: 30px;
+    > header {
+      margin: 1rem;
+      display: flex;
+      background: transparent;
+      font-weight: bolder;
+      text-align: center;
+      button {
+        flex: 1;
+        border: 0;
+        cursor: pointer;
+        background: transparent;
+        outline: none;
+        font-size: 16px;
+        padding-bottom: 10px;
+      }
+      .month_btn {
+        flex: 8;
+        cursor: pointer;
+        outline: none;
+      }
+    }
+    .content {
+      position: relative;
+      margin: 15px;
+      table {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 2px;
+      }
+      .month_table,
+      .year_table {
+        height: 200px;
+      }
+      tbody {
+        display: table-row-group;
+        vertical-align: middle;
+      }
+      tr {
+        display: table-row;
+        vertical-align: inherit;
+      }
+      th {
+        padding: 5px;
+        font-weight: 400;
+        display: table-cell;
+        vertical-align: inherit;
+        font-weight: bold;
+      }
+      td {
+        width: 32px;
+        height: 30px;
+        padding: 4px 0;
+        box-sizing: border-box;
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        &.inactive {
+          color: #aaa;
+        }
+        &.selected {
+          color: #fff;
+          font-weight: 900;
+          background-color: #db3d44;
+          border-radius: 50px;
+        }
+        &.current {
+          color: #db3d44;
+          background-color: #fff;
+          border-radius: 0px;
+        }
+      }
+      .date_table {
+        user-select: none;
+      }
+    }
+  }
+}
