@@ -56,6 +56,7 @@
     &__btn-add {
       display: block;
       margin-left: auto;
+      margin-bottom: 1.5rem;
     }
   }
 </style>

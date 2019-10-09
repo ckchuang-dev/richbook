@@ -1,28 +1,26 @@
 <template>
-  <el-aside
-    class="app-sidebar"
-    width="200px"
-  >
+  <div class="app-aside">
     <el-menu
       :default-active="activeIndex"
       @select="handleItemSelect"
     >
       <template v-for="menuItem in menuList">
         <el-menu-item
+          class="app-aside__menu-item"
           :index="menuItem.name"
           :key="menuItem.name"
         >
-          <i :class="['app-sidebar__icon', `${menuItem.meta.icon}`]" />
+          <i :class="['app-aside__icon', `${menuItem.meta.icon}`]" />
           <span>{{menuItem.meta.title}}</span>
         </el-menu-item>
       </template>
     </el-menu>
-  </el-aside>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'Sidebar',
+    name: 'AppAside',
     computed: {
       menuList() {
         return this.$router.options.routes[0].children
@@ -45,9 +43,18 @@
 </script>
 
 <style lang="scss">
-  .app-sidebar {
+  .app-aside {
     &__icon {
-      margin-right: 0.75rem;
+      margin-right: 1rem;
+    }
+    &__menu-item {
+      padding-left: 1.4rem;
+      color: rgb(191, 203, 217);
+      background-color: rgb(48, 65, 86);
+      &:hover,
+      &:focus {
+        background-color: #263445;
+      }
     }
   }
 </style>
