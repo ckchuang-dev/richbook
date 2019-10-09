@@ -15,7 +15,6 @@
       <el-table-column
         prop="title"
         label="項目"
-        width="375"
       />
       <el-table-column
         prop="dollar"

@@ -43,7 +43,7 @@
   .app-layout {
     display: flex;
     &__aside-container {
-      transition: width 0.28s;
+      transition: width 0.3s;
       background-color: #304156;
       width: $layout-aside-hide-width;
       height: 100%;
@@ -59,12 +59,13 @@
       }
     }
     &__main-container {
-      transition: margin-left 0.28s;
+      transition: margin-left width 0.3s;
       margin-left: $layout-aside-hide-width;
       width: 100%;
       min-height: 100%;
       &.app-layout__show-aside {
         margin-left: $layout-aside-show-width;
+        width: calc(100% - #{$layout-aside-show-width});
       }
     }
   }
