@@ -1,3 +1,7 @@
 .el-menu {
   border-right: 0;
 }
+.el-date-editor.el-input,
+.el-select {
+  width: 100%;
+}

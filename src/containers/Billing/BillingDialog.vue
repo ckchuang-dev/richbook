@@ -1,5 +1,5 @@
 <template>
-  <div class="ct_billing_dialog">
+  <div class="ct-billing-dialog">
     <el-dialog title="新增紀錄"
                :visible.sync="dialogFormVisible"
                @close="handleClose">
@@ -157,6 +157,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .ct_billing_dialog {
+  .ct-billing-dialog {
   }
 </style>
