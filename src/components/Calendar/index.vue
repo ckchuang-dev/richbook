@@ -1,17 +1,12 @@
 <script>
   export default {
     name: 'Calendar',
-    props: {
-      date: {
-        type: Object,
-        default: null
-      }
-    },
     data() {
       return {
         selectedTableId: 1,
         weekNames: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
         monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        date: null,
         displayDate: null,
         currentDate: null
       }
@@ -221,8 +216,8 @@
         month: parseInt(now.slice(5, 7)) - 1,
         day: parseInt(now.slice(8, 10))
       }
-      if (this.date) this.displayDate = JSON.parse(JSON.stringify(this.date))
-      else this.displayDate = JSON.parse(JSON.stringify(this.currentDate))
+      this.date = JSON.parse(JSON.stringify(this.currentDate))
+      this.displayDate = JSON.parse(JSON.stringify(this.currentDate))
     }
   }
 </script>

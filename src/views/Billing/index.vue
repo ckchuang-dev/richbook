@@ -1,6 +1,7 @@
 <template>
   <div class="pg-billing">
-    <BillingCalendar @select="handleSelectedDate" />
+    <calendar class="pg-billing__calendar"
+              @select="handleSelectedDate" />
     <el-button class="pg-billing__btn-add"
                type="primary"
                size="mini"
@@ -17,12 +18,11 @@
 </template>
 
 <script>
-  import BillingCalendar from '@/containers/Billing/BillingCalendar'
   import BillingList from '@/containers/Billing/BillingList'
   import BillingDialog from '@/containers/Billing/BillingDialog'
   export default {
     name: 'Billing',
-    components: { BillingCalendar, BillingList, BillingDialog },
+    components: { BillingList, BillingDialog },
     data() {
       return {
         showDialog: false,
@@ -51,7 +51,10 @@
         this.showDialog = false
       },
       handleSelectedDate(date) {
-        this.selectedDate = date
+        const { year, month, day } = date
+        const zMonth = ('0' + (month + 1)).slice(-2)
+        const zDay = ('0' + day).slice(-2)
+        this.selectedDate = `${year}-${zMonth}-${zDay}`
         this.isLoading = true
         this.$store
           .dispatch('billing/getExpenseData', date)
@@ -75,6 +78,9 @@
 
 <style lang="scss">
   .pg-billing {
+    &__calendar {
+      margin: 0.71rem auto;
+    }
     &__btn-add {
       display: block;
       margin-left: auto;
