@@ -5,10 +5,13 @@
                type="primary"
                size="mini"
                @click="handleAdd">新增紀錄</el-button>
-    <BillingList :isLoading="isLoading"
+    <BillingList :isLoading.sync="isLoading"
+                 :selectedDate="selectedDate"
                  @edit="handleEdit" />
     <BillingDialog :showDialog="showDialog"
                    :dialogData="dialogData"
+                   :selectedDate="selectedDate"
+                   :isLoading.sync="isLoading"
                    @close="closeDialog" />
   </div>
 </template>

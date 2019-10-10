@@ -38,9 +38,9 @@ export const actions = {
       db.collection('expense')
         .add({ ...expenseObj })
         .then(() => {
-          dispatch('getExpenseData', date)
-          resolve()
+          return dispatch('getExpenseData', date)
         })
+        .then(() => resolve())
         .catch(error => reject(error))
     })
   },
@@ -54,21 +54,21 @@ export const actions = {
           ...expenseObj
         })
         .then(() => {
-          dispatch('getExpenseData', date)
-          resolve()
+          return dispatch('getExpenseData', date)
         })
+        .then(() => resolve())
         .catch(error => reject(error))
     })
   },
-  deleteExpense({ dispatch }, id) {
+  deleteExpense({ dispatch }, { id, date }) {
     return new Promise((resolve, reject) => {
       db.collection('expense')
         .doc(id)
         .delete()
         .then(() => {
-          dispatch('getExpenseData')
-          resolve()
+          return dispatch('getExpenseData', date)
         })
+        .then(() => resolve())
         .catch(error => reject(error))
     })
   }

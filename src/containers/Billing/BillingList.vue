@@ -53,6 +53,10 @@
       isLoading: {
         type: Boolean,
         required: true
+      },
+      selectedDate: {
+        type: String,
+        required: true
       }
     },
     data() {
@@ -72,7 +76,13 @@
       },
       handleDelete() {
         this.deleteDialogVisible = false
-        this.$store.dispatch('billing/deleteExpense', this.deleteId)
+        this.$emit('update:isLoading', true)
+        this.$store
+          .dispatch('billing/deleteExpense', { id: this.deleteId, date: this.selectedDate })
+          .then(() => {
+            this.$emit('update:isLoading', false)
+          })
+          .catch(status => console.log(status))
       }
     }
   }

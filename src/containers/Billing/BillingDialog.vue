@@ -12,6 +12,7 @@
           <el-date-picker v-model="form.date"
                           value-format="yyyy-MM-dd"
                           type="date"
+                          disabled
                           placeholder="日期">
           </el-date-picker>
         </el-form-item>
@@ -71,6 +72,14 @@
       dialogData: {
         type: Object,
         required: true
+      },
+      selectedDate: {
+        type: String,
+        required: true
+      },
+      isLoading: {
+        type: Boolean,
+        required: true
       }
     },
     data() {
@@ -99,8 +108,22 @@
         this.$refs.billingDialogForm
           .validate()
           .then(() => {
-            if (this.dialogData.action === 'ADD') this.$store.dispatch('billing/addExpense', this.form)
-            else this.$store.dispatch('billing/updateExpense', this.form)
+            this.$emit('update:isLoading', true)
+            if (this.dialogData.action === 'ADD') {
+              this.$store
+                .dispatch('billing/addExpense', this.form)
+                .then(() => {
+                  this.$emit('update:isLoading', false)
+                })
+                .catch(status => console.log(status))
+            } else {
+              this.$store
+                .dispatch('billing/updateExpense', this.form)
+                .then(() => {
+                  this.$emit('update:isLoading', false)
+                })
+                .catch(status => console.log(status))
+            }
             this.handleClose()
           })
           .catch(status => {
@@ -122,7 +145,7 @@
               type: '',
               title: '',
               account: '',
-              date: ''
+              date: this.selectedDate
             }
           } else {
             this.form = { ...this.dialogData.data }
