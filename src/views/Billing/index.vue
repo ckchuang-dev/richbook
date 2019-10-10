@@ -5,7 +5,8 @@
                type="primary"
                size="mini"
                @click="handleAdd">新增紀錄</el-button>
-    <BillingList @edit="handleEdit" />
+    <BillingList :isLoading="isLoading"
+                 @edit="handleEdit" />
     <BillingDialog :showDialog="showDialog"
                    :dialogData="dialogData"
                    @close="closeDialog" />
@@ -26,7 +27,8 @@
           action: '',
           data: {}
         },
-        selectedDate: this.$dateFormatDash(new Date())
+        selectedDate: this.$dateFormatDash(new Date()),
+        isLoading: false
       }
     },
     methods: {
@@ -47,8 +49,23 @@
       },
       handleSelectedDate(date) {
         this.selectedDate = date
-        this.$store.dispatch('billing/getExpenseData', date)
+        this.isLoading = true
+        this.$store
+          .dispatch('billing/getExpenseData', date)
+          .then(() => {
+            this.isLoading = false
+          })
+          .catch(status => console.log(status))
       }
+    },
+    mounted() {
+      this.isLoading = true
+      this.$store
+        .dispatch('billing/getExpenseData', this.selectedDate)
+        .then(() => {
+          this.isLoading = false
+        })
+        .catch(status => console.log(status))
     }
   }
 </script>

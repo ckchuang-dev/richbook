@@ -46,14 +46,18 @@
     name: 'BillingList',
     computed: {
       ...mapState({
-        expenseData: state => state.billing.expenseData,
-        clientDate: state => state.billing.clientDate
+        expenseData: state => state.billing.expenseData
       })
+    },
+    props: {
+      isLoading: {
+        type: Boolean,
+        required: true
+      }
     },
     data() {
       return {
         expense: '',
-        isLoading: false,
         deleteDialogVisible: false,
         deleteId: ''
       }
@@ -70,12 +74,6 @@
         this.deleteDialogVisible = false
         this.$store.dispatch('billing/deleteExpense', this.deleteId)
       }
-    },
-    mounted() {
-      this.isLoading = true
-      this.$store.dispatch('billing/getExpenseData', this.clientDate).then(() => {
-        this.isLoading = false
-      })
     }
   }
 </script>
