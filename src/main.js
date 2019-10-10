@@ -4,6 +4,7 @@ import router from './router'
 import store from './store/index'
 import '@/assets/styles/main.scss'
 import './plugins/ui-kits.js'
+import './plugins/day.js'
 import './plugins/element.js'
 
 Vue.config.productionTip = false
