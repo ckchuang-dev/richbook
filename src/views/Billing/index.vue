@@ -1,18 +1,18 @@
 <template>
   <div class="pg-billing">
-    <BillingDialog
-      :showDialog="showDialog"
-      :dialogData="dialogData"
-      @close="closeDialog"
-    />
-    <BillingCalendar />
-    <el-button
-      class="pg-billing__btn-add"
-      type="primary"
-      size="mini"
-      @click="handleAdd"
-    >新增紀錄</el-button>
-    <BillingList @edit="handleEdit" />
+    <BillingCalendar @select="handleSelectedDate" />
+    <el-button class="pg-billing__btn-add"
+               type="primary"
+               size="mini"
+               @click="handleAdd">新增紀錄</el-button>
+    <BillingList :isLoading.sync="isLoading"
+                 :selectedDate="selectedDate"
+                 @edit="handleEdit" />
+    <BillingDialog :showDialog="showDialog"
+                   :dialogData="dialogData"
+                   :selectedDate="selectedDate"
+                   :isLoading.sync="isLoading"
+                   @close="closeDialog" />
   </div>
 </template>
 
@@ -29,7 +29,9 @@
         dialogData: {
           action: '',
           data: {}
-        }
+        },
+        selectedDate: this.$dateFormatDash(new Date()),
+        isLoading: false
       }
     },
     methods: {
@@ -47,7 +49,26 @@
         this.dialogData.action = ''
         this.dialogData.data = {}
         this.showDialog = false
+      },
+      handleSelectedDate(date) {
+        this.selectedDate = date
+        this.isLoading = true
+        this.$store
+          .dispatch('billing/getExpenseData', date)
+          .then(() => {
+            this.isLoading = false
+          })
+          .catch(status => console.log(status))
       }
+    },
+    mounted() {
+      this.isLoading = true
+      this.$store
+        .dispatch('billing/getExpenseData', this.selectedDate)
+        .then(() => {
+          this.isLoading = false
+        })
+        .catch(status => console.log(status))
     }
   }
 </script>

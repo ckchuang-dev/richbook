@@ -14,7 +14,7 @@
     "vue": "html"
   },
   "html.format.wrapLineLength": 120,
-  "html.format.wrapAttributes": "force-expand-multiline",
+  "html.format.wrapAttributes": "force-aligned",
   "javascript.validate.enable": false,
   "vetur.format.styleInitialIndent": true,
   "vetur.format.scriptInitialIndent": true,
@@ -28,7 +28,7 @@
     },
     "js-beautify-html": {
       "wrap_line_length": 120,
-      "wrap_attributes": "force-expand-multiline"
+      "wrap_attributes": "force-aligned"
     }
   },
   "blueprint.templatesPath": [".vscode/blueprint-templates"],
