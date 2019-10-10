@@ -1,18 +1,14 @@
 <template>
   <div class="pg-billing">
-    <BillingDialog
-      :showDialog="showDialog"
-      :dialogData="dialogData"
-      @close="closeDialog"
-    />
-    <BillingCalendar />
-    <el-button
-      class="pg-billing__btn-add"
-      type="primary"
-      size="mini"
-      @click="handleAdd"
-    >新增紀錄</el-button>
+    <BillingCalendar @select="handleSelectedDate" />
+    <el-button class="pg-billing__btn-add"
+               type="primary"
+               size="mini"
+               @click="handleAdd">新增紀錄</el-button>
     <BillingList @edit="handleEdit" />
+    <BillingDialog :showDialog="showDialog"
+                   :dialogData="dialogData"
+                   @close="closeDialog" />
   </div>
 </template>
 
@@ -29,7 +25,8 @@
         dialogData: {
           action: '',
           data: {}
-        }
+        },
+        selectedDate: this.$dateFormatDash(new Date())
       }
     },
     methods: {
@@ -47,6 +44,10 @@
         this.dialogData.action = ''
         this.dialogData.data = {}
         this.showDialog = false
+      },
+      handleSelectedDate(date) {
+        this.selectedDate = date
+        this.$store.dispatch('billing/getExpenseData', date)
       }
     }
   }

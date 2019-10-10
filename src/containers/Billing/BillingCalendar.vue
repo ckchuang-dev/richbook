@@ -1,9 +1,7 @@
 <template>
-  <div id="ct_billing_calendar">
-    <calendar
-      :date="selectedDate"
-      :onSelect="onSelect"
-    />
+  <div id="ct-billing-calendar">
+    <calendar :date="selectedDate"
+              @select="onSelect" />
   </div>
 </template>
 
@@ -26,10 +24,11 @@
     methods: {
       onSelect(date) {
         this.selectedDate = date
+        this.$emit('select', this.dateText)
       }
     },
     beforeMount() {
-      const now = new Date().toISOString()
+      const now = this.$dateFormatDash(new Date())
       const currentDate = {
         year: parseInt(now.slice(0, 4)),
         month: parseInt(now.slice(5, 7)) - 1,
@@ -41,7 +40,7 @@
 </script>
 
 <style lang="scss" scoped>
-  #ct_billing_calendar {
+  #ct-billing-calendar {
     margin: 0.71rem auto;
   }
 </style>

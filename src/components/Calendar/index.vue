@@ -5,10 +5,6 @@
       date: {
         type: Object,
         default: null
-      },
-      onSelect: {
-        type: Function,
-        required: true
       }
     },
     data() {
@@ -172,7 +168,7 @@
         this.date.day = date.value
         this.date.month = this.displayDate.month
         this.date.year = this.displayDate.year
-        this.onSelect(this.date)
+        this.$emit('select', this.date)
       },
       checkSelectedDate(date) {
         const dy = this.displayDate.year
@@ -219,7 +215,7 @@
       }
     },
     beforeMount() {
-      const now = new Date().toISOString()
+      const now = this.$dateFormatDash(new Date())
       this.currentDate = {
         year: parseInt(now.slice(0, 4)),
         month: parseInt(now.slice(5, 7)) - 1,

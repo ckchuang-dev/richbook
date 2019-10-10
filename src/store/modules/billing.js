@@ -1,8 +1,10 @@
 import { db } from '../db'
 import { resolve } from 'any-promise'
+import dayjs from 'dayjs'
 
 export const state = () => ({
-  expenseData: []
+  expenseData: [],
+  clientDate: dayjs(new Date()).format('YYYY-MM-DD')
 })
 
 export const mutations = {
@@ -12,9 +14,10 @@ export const mutations = {
 }
 
 export const actions = {
-  getExpenseData({ commit }) {
+  getExpenseData({ commit }, date) {
     return new Promise((resolve, reject) => {
       db.collection('expense')
+        .where('date', '==', date)
         .get()
         .then(querySnapshot => {
           const documents = querySnapshot.docs.map(doc => {
@@ -30,18 +33,19 @@ export const actions = {
     })
   },
   addExpense({ dispatch }, expenseObj) {
+    const { date } = expenseObj
     return new Promise((resolve, reject) => {
       db.collection('expense')
         .add({ ...expenseObj })
         .then(() => {
-          dispatch('getExpenseData')
+          dispatch('getExpenseData', date)
           resolve()
         })
         .catch(error => reject(error))
     })
   },
   updateExpense({ dispatch }, expenseObj) {
-    const id = expenseObj.id
+    const { id, date } = expenseObj
     delete expenseObj.id
     return new Promise((resolve, reject) => {
       db.collection('expense')
@@ -50,7 +54,7 @@ export const actions = {
           ...expenseObj
         })
         .then(() => {
-          dispatch('getExpenseData')
+          dispatch('getExpenseData', date)
           resolve()
         })
         .catch(error => reject(error))
