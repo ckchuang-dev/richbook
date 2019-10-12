@@ -25,12 +25,10 @@
                       label="類別">
           <el-select v-model="form.type"
                      placeholder="請選擇類別">
-            <el-option label="早餐"
-                       value="breakfast"></el-option>
-            <el-option label="午餐"
-                       value="lunch"></el-option>
-            <el-option label="晚餐"
-                       value="dinner"></el-option>
+            <el-option v-for="option in typeOptions"
+                       :key="option.value"
+                       :label="option.label"
+                       :value="option.value" />
           </el-select>
         </el-form-item>
         <el-form-item prop="account"
@@ -62,6 +60,7 @@
 </template>
 
 <script>
+  import typeOptions from '@/static/billing/typeOptions.json'
   export default {
     name: 'BillingDialog',
     props: {
@@ -100,7 +99,8 @@
           account: [{ required: true, message: '請選擇帳戶', trigger: 'blur' }],
           date: [{ required: true, message: '請選擇日期', trigger: 'blur' }]
         },
-        dialogFormVisible: false
+        dialogFormVisible: false,
+        typeOptions: typeOptions
       }
     },
     methods: {

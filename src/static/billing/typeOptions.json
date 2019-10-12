@@ -1,0 +1,22 @@
+[
+  { "label": "早餐", "value": "breakfast", "icon": "el-icon-burger" },
+  { "label": "午餐", "value": "lunch", "icon": "el-icon-tableware" },
+  { "label": "晚餐", "value": "dinner", "icon": "el-icon-dish-1" },
+  { "label": "飲料", "value": "drink", "icon": "el-icon-cold-drink" },
+  { "label": "水果", "value": "fruit", "icon": "el-icon-grape" },
+  { "label": "零食", "value": "snack", "icon": "el-icon-potato-strips" },
+  { "label": "小酌", "value": "booze", "icon": "el-icon-goblet-square-full" },
+  { "label": "衣著", "value": "cloth", "icon": "el-icon-watch" },
+  { "label": "租屋", "value": "house", "icon": "el-icon-house" },
+  {
+    "label": "日常用品",
+    "value": "daily-supplies",
+    "icon": "el-icon-shopping-bag-1"
+  },
+  { "label": "交通", "value": "traffic", "icon": "el-icon-truck" },
+  { "label": "學習", "value": "learn", "icon": "el-icon-reading" },
+  { "label": "娛樂", "value": "entertainment", "icon": "el-icon-service" },
+  { "label": "旅遊", "value": "travel", "icon": "el-icon-ship" },
+  { "label": "醫療", "value": "medicine", "icon": "el-icon-first-aid-kit" },
+  { "label": "其他", "value": "other", "icon": "el-icon-wallet" }
+]
