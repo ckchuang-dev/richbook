@@ -24,6 +24,8 @@
         <el-form-item prop="type"
                       label="類別">
           <el-select v-model="form.type"
+                     filterable
+                     allow-create
                      placeholder="請選擇類別">
             <el-option label="早餐"
                        value="breakfast"></el-option>
@@ -53,7 +55,7 @@
       </el-form>
       <div slot="footer"
            class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="dialogFormVisible = false">取消</el-button>
         <el-button type="primary"
                    @click="handleSubmit">儲存</el-button>
       </div>

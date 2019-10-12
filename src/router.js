@@ -29,6 +29,12 @@ export default new Router({
           name: 'charts',
           component: () => import('./views/Charts'),
           meta: { title: '圖表分析', icon: 'el-icon-pie-chart' }
+        },
+        {
+          path: '/answer',
+          name: 'answer',
+          component: () => import('./views/Answer'),
+          meta: { title: '吃什麼', icon: 'el-icon-guide' }
         }
       ]
     }
