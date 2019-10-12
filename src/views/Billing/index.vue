@@ -57,7 +57,7 @@
         this.selectedDate = `${year}-${zMonth}-${zDay}`
         this.isLoading = true
         this.$store
-          .dispatch('billing/getExpenseData', date)
+          .dispatch('billing/getExpenseData', this.selectedDate)
           .then(() => {
             this.isLoading = false
           })
