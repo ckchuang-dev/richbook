@@ -7,7 +7,9 @@
                        label="類別"
                        align="center"
                        width="50">
-        <i class="el-icon-food"></i>
+        <template slot-scope="props">
+          <i :class="getIcon(props.row.type)"></i>
+        </template>
       </el-table-column>
       <el-table-column prop="title"
                        label="項目" />
@@ -42,6 +44,7 @@
 
 <script>
   import { mapState } from 'vuex'
+  import typeOptions from '@/static/billing/typeOptions.json'
   export default {
     name: 'BillingList',
     computed: {
@@ -73,6 +76,12 @@
       handleConfirm(id) {
         this.deleteDialogVisible = true
         this.deleteId = id
+      },
+      getIcon(type) {
+        const item = typeOptions.find(item => {
+          if (item.value === type) return item
+        })
+        return item.icon
       },
       handleDelete() {
         this.deleteDialogVisible = false
