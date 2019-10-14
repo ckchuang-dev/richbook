@@ -19,6 +19,12 @@ export default new Router({
           meta: { title: '月記帳本', icon: 'el-icon-notebook-1' }
         },
         {
+          path: '/buy',
+          name: 'buy',
+          component: () => import('./views/Buy'),
+          meta: { title: '待購清單', icon: 'el-icon-shopping-bag-1' }
+        },
+        {
           path: '/account',
           name: 'account',
           component: () => import('./views/Account'),
