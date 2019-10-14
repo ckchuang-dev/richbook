@@ -50,6 +50,7 @@
       text-align: center;
       line-height: 3rem;
       vertical-align: middle;
+      cursor: pointer;
     }
   }
 </style>

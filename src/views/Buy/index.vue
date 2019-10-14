@@ -43,25 +43,30 @@
         ]
       }
     },
+    methods: {
+      handleDrag() {
+        this.$dragula([
+          document.getElementById('want'),
+          document.getElementById('need'),
+          document.getElementById('satisfy'),
+          document.getElementById('sublimate')
+        ])
+          .on('drag', function(el) {
+            el.className.replace('ex-moved', '')
+          })
+          .on('drop', function(el) {
+            el.className += 'ex-moved'
+          })
+          .on('over', function(el, container) {
+            container.className += 'ex-over'
+          })
+          .on('out', function(el, container) {
+            container.className.replace('ex-over', '')
+          })
+      }
+    },
     mounted() {
-      this.$dragula([
-        document.getElementById('want'),
-        document.getElementById('need'),
-        document.getElementById('satisfy'),
-        document.getElementById('sublimate')
-      ])
-        .on('drag', function(el) {
-          el.className.replace('ex-moved', '')
-        })
-        .on('drop', function(el) {
-          el.className += 'ex-moved'
-        })
-        .on('over', function(el, container) {
-          container.className += 'ex-over'
-        })
-        .on('out', function(el, container) {
-          container.className.replace('ex-over', '')
-        })
+      this.handleDrag()
     }
   }
 </script>
