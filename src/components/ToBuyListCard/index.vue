@@ -1,13 +1,13 @@
 <template>
   <div class="cp-to-buy-list-card">
     <div class="cp-to-buy-list-card__title">
-      <h3>{{title}}</h3>
+      <h3>{{cardData.title}}</h3>
     </div>
     <div class="cp-to-buy-list-card__item-container"
-         :id="title">
+         :id="cardData.id">
       <div class="cp-to-buy-list-card__item"
            :key="item"
-           v-for="item in list">
+           v-for="item in cardData.list">
         <p>{{item}}</p>
       </div>
     </div>
@@ -18,12 +18,8 @@
   export default {
     name: 'ToBuyListCard',
     props: {
-      title: {
-        type: String,
-        required: true
-      },
-      list: {
-        type: Array,
+      cardData: {
+        type: Object,
         required: true
       }
     }

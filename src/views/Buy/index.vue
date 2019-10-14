@@ -6,15 +6,13 @@
         <to-buy-list-card class="pg-to-buy-list__card"
                           :key="item.id"
                           v-for="item in cardList"
-                          :title="item.title"
-                          :list="item.list" />
+                          :cardData="item" />
       </div>
     </el-card>
   </div>
 </template>
 
 <script>
-  import dragula from 'dragula'
   import ToBuyListCard from '@/components/ToBuyListCard'
   export default {
     name: 'Buy',
@@ -45,7 +43,26 @@
         ]
       }
     },
-    mounted() {}
+    mounted() {
+      this.$dragula([
+        document.getElementById('want'),
+        document.getElementById('need'),
+        document.getElementById('satisfy'),
+        document.getElementById('sublimate')
+      ])
+        .on('drag', function(el) {
+          el.className.replace('ex-moved', '')
+        })
+        .on('drop', function(el) {
+          el.className += 'ex-moved'
+        })
+        .on('over', function(el, container) {
+          container.className += 'ex-over'
+        })
+        .on('out', function(el, container) {
+          container.className.replace('ex-over', '')
+        })
+    }
   }
 </script>
 
