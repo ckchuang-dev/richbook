@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <h2>待購清單</h2>
+  <div class="pg-to-buy-list">
+    <h2 class="pg-to-buy-list__title">待購清單</h2>
     <el-card>
-      <ul class="columns">
-        <to-buy-list-card :key="item.id"
+      <div class="pg-to-buy-list__card-container">
+        <to-buy-list-card class="pg-to-buy-list__card"
+                          :key="item.id"
                           v-for="item in cardList"
                           :title="item.title"
                           :list="item.list" />
-      </ul>
+      </div>
     </el-card>
   </div>
 </template>
@@ -48,5 +49,19 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+  .pg-to-buy-list {
+    &__title {
+      margin-bottom: 1.5rem;
+    }
+    &__card-container {
+      max-width: 960px;
+      min-height: 320px;
+      margin: 2rem auto;
+      display: flex;
+      justify-content: space-around;
+    }
+    &__card {
+    }
+  }
 </style>
