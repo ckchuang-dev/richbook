@@ -1,6 +1,7 @@
 <template>
   <div class="cp-to-buy-list-card">
-    <div class="cp-to-buy-list-card__title">
+    <div :style="{ 'background-color': cardData.color }"
+         class="cp-to-buy-list-card__title">
       <h3>{{cardData.title}}</h3>
     </div>
     <div class="cp-to-buy-list-card__item-container"
@@ -26,13 +27,14 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .cp-to-buy-list-card {
-    width: 200px;
+    width: 14.29rem;
     background-color: #aaa;
+
     &__title {
       width: 100%;
-      height: 50px;
+      height: 3.57rem;
       text-align: center;
       background-color: #999;
       line-height: 4rem;
@@ -41,16 +43,20 @@
     &__item-container {
       display: flex;
       flex-direction: column;
+      min-height: 2rem;
     }
     &__item {
       width: 90%;
       height: 3rem;
       background-color: #ddd;
-      margin: 0.5rem auto;
+      margin: 0.71rem auto 0;
       text-align: center;
       line-height: 3rem;
       vertical-align: middle;
       cursor: pointer;
+      &:last-child {
+        margin-bottom: 0.71rem;
+      }
     }
   }
 </style>
